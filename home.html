@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main">
+        <div class="weather-card box">
+            <!-- <div class="ocean">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+              </div> -->
+            
+                <div class="box-inner"></div>
+             
+            <div id="weather-icon" class="weather-icon">
+                <i class="fa-solid fa-sun" style="color: orange;"></i> 
+            </div>
+
+            <div class="info">
+              <h2 class="location"> <i class="fa-solid fa-street-view"></i>{%location%},{%country%}</h2>
+              <p id="date">WED | 31,Jan | 12.40pm</p>
+              <h1 class="temp">
+                  {%tempVal%}
+              </h1>
+              <h3 class="max-min-temp"> MIN: {%mintempVal%} | MAX: {%maxtempVal%} </h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const curDate = document.getElementById("date");
+    let weathercon = document.getElementById("weather-icon");
+  
+    const tempStatus = "Clouds";
+
+    const getCurrentDate = ()=>{
+        var weekday = new Array(7);
+        
+        weekday[0] = "Sun" ;
+        weekday[1] = "Mon" ;
+        weekday[2] = "Tues" ;
+        weekday[3] = "Wednes" ;
+        weekday[4] = "Thurs" ;
+        weekday[5] = "Fri" ;
+        weekday[6] = "Satur" ;
+        let currentTime = new Date();
+       return weekday[currentTime.getDay()]
+    }
+    getCurrentDate();
+
+    const getCurrentTime = ()=>{
+        let currentTime = new Date();
+        if(currentTime.getHours() > 12){
+            return 24-currentTime.getHours()+":"+currentTime.getMinutes()+"PM";
+            
+        }else{
+           return currentTime.getHours()+":"+currentTime.getMinutes()+"AM";
+        }
+    }
+    //getCurrentTime();
+
+    const getCurrentMonth =()=>{
+       var now = new Date();
+       var months = new Array(12);
+        months[0] = "jan" ;
+        months[1] = "Feb" ;
+        months[2] = "Mar" ;
+        months[3] = "Apr" ;
+        months[4] = "May" ;
+        months[5] = "Jun" ;
+        months[6] = "July" ;
+        months[7] = "Aug" ;
+        months[8] = "Sep" ;
+        months[9] = "Oct" ;
+        months[10] = "Nov" ;
+        months[11] = "Dec" ;
+        return `${now.getDate()},${months[now.getMonth()]}`
+       
+    }
+
+    curDate.innerHTML = getCurrentDate() +"|"+ getCurrentMonth() +"|" + getCurrentTime();
+  
+    </script>
+</body>
+</html>
